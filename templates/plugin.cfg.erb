@@ -1,7 +1,8 @@
 filename = "<%= @filename %>"
 <% @config.sort.each do |k, v| -%>
 <% if v.respond_to?(:each) -%>
-<%= k %> = { <% v.sort.each do |hk, hv| -%>
+<%= k %> = {
+<% v.sort.each do |hk, hv| -%>
   <%= hk %> = <%= scope.function_hindsight_escape([hv]) %>,
 <% end -%>
 }
