@@ -35,4 +35,27 @@ plugin configuration:
 ```
 `target` is file location in `run_dir` without extension (`.cfg`).
 
+The simplest plugin is probably `debug`:
+
+```puppet
+hindsight::plugin {'debug':
+  filename => 'heka_debug.lua',
+  target   => 'output/debug',
+  config   => {
+    message_matcher => 'TRUE',
+  }
+}
+```
+in order to disable plugin use `ensure => absent`:
+
+```
+  hindsight::plugin {'debug':
+    ensure   => absent,
+    filename => 'heka_debug.lua',
+    target   => 'output/debug',
+    config   => {
+      message_matcher => 'TRUE',
+    }
+  }
+```
 
