@@ -1,0 +1,33 @@
+{
+  "name": "deric-hindsight",
+  "version": "0.1.0",
+  "author": "deric",
+  "summary": "Manage Hindsight log processing service",
+  "license": "Apache-2.0",
+  "source": "https://github.com/deric/puppet-hindsight",
+  "project_page": "https://github.com/deric/puppet-hindsight",
+  "issues_url": "https://github.com/deric/puppet-hindsight/issues",
+  "dependencies": [
+    {
+      "name": "puppetlabs-stdlib",
+      "version_requirement": ">= 1.0.0"
+    }
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "5",
+        "6",
+        "7"
+      ]
+    }
+  ]
+}
