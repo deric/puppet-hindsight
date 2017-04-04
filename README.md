@@ -20,7 +20,7 @@ All module names are expected to be available via package manager.
 ```
 plugin configuration:
 
-```
+```puppet
   hindsight::plugin {'tcp':
     filename => 'tcp.lua',
     target   => 'input/tcp',
