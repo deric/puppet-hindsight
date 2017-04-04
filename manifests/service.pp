@@ -1,3 +1,5 @@
+# Hindsight service
+#
 class hindsight::service (
   $service,
   $ensure,
@@ -20,7 +22,7 @@ class hindsight::service (
   }
 
   exec { 'systemd_update':
-    command      => 'systemctl daemon-reload',
+    command     => 'systemctl daemon-reload',
     path        => '/bin:/usr/bin:/usr/sbin',
     refreshonly => true,
   }
@@ -35,7 +37,7 @@ class hindsight::service (
     ],
     subscribe  => [
       File['/lib/systemd/system/hindsight.service']
-    ]
+    ],
   }
 
 }

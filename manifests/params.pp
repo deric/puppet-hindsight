@@ -1,3 +1,4 @@
+# Default param values
 class hindsight::params {
 
   case $::osfamily {

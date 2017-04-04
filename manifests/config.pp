@@ -1,3 +1,5 @@
+# Manages config directories
+#
 class hindsight::config (
   $user,
   $group,

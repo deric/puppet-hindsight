@@ -18,8 +18,8 @@ class hindsight (
   class { '::hindsight::install':
     package => $package,
     modules => $modules,
-  } ->
-  class{'::hindsight::config':
+  }
+  -> class{'::hindsight::config':
     user       => $user,
     group      => $group,
     conf_dir   => $conf_dir,
@@ -32,8 +32,8 @@ class hindsight (
       service => $service_name,
       ensure  => $service_ensure,
       require => [    Class['hindsight::config']],
-    } ->
-    Class['::hindsight']
+    }
+    -> Class['::hindsight']
   }
 
 }
