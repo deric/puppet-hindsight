@@ -2,9 +2,11 @@
 #
 # This class is called from hindsight for install.
 #
-class hindsight::install {
+class hindsight::install(
+    $package,
+    $modules,
+  ) {
 
-  package { $::hindsight::package_name:
-    ensure => present,
-  }
+  ensure_packages(concat([$package], $modules))
+
 }

@@ -1,0 +1,4 @@
+filename = "<%= @filename %>"
+<% @config.sort.each do |k, v| -%>
+<%= k %> = <%= scope.function_hindsight_escape([v]) %>
+<% end -%>
