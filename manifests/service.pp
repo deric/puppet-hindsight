@@ -9,7 +9,7 @@ class hindsight::service (
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    content => template('hindsight/service.erb'),,
+    content => template('hindsight/service.erb'),
     notify  => Exec['systemd_update'],
   }
 

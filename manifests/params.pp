@@ -1,7 +1,20 @@
 class hindsight::params {
+
+  case $::osfamily {
+    'Debian': {
+      $package = 'hindsight'
+      $service_name = 'hindsight'
+    }
+    'RedHat', 'Amazon': {
+      $package = 'hindsight'
+      $service_name = 'hindsight'
+    }
+    default: {
+      fail("${::operatingsystem} not supported")
+    }
+  }
+
   $modules        = []
-  $package        = 'hindsight'
-  $service_name   = 'hindsight'
   $service_ensure = 'running'
   $user           = 'root'
   $group          = 'root'
