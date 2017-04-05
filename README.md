@@ -1,5 +1,9 @@
 # puppet-hindsight
 
+[![Puppet
+Forge](http://img.shields.io/puppetforge/v/deric/hindsight.svg)](https://forge.puppetlabs.com/deric/hindsight) [![Build Status](https://travis-ci.org/deric/puppet-hindsight.svg?branch=master)](https://travis-ci.org/deric/puppet-hindsight) [![Puppet Forge
+Downloads](http://img.shields.io/puppetforge/dt/deric/hindsight.svg)](https://forge.puppetlabs.com/deric/hindsight/scores)
+
 Module for managing Mozilla's Hindsight configuration and service.
 
 ## Related projects
