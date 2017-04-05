@@ -32,6 +32,11 @@ define hindsight::plugin (
       content =>  template('hindsight/plugin.cfg.erb'),
       order   => $order,
     }
+    if $manage_service {
+      Concat::Fragment<| title == $title |> {
+        notify => Service[$service_name]
+      }
+    }
   } else {
     file {$path:
       ensure => $ensure,
