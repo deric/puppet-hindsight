@@ -57,9 +57,6 @@ in order to disable plugin use `ensure => absent`:
     ensure   => absent,
     filename => 'heka_debug.lua',
     target   => 'output/debug',
-    config   => {
-      message_matcher => 'TRUE',
-    }
   }
 ```
 

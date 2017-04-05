@@ -1,3 +1,4 @@
-YYYY-MM-DD Release 0.1.0
-- something you did
-- something else you did
+2017-04-05 Release 0.1.0
+- initial module implementation
+- systemd service configuration
+- manages basic Hindsight plugins configuration
