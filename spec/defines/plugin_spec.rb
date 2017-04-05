@@ -3,13 +3,15 @@ require 'spec_helper'
 describe 'hindsight::plugin', :type => :define do
   let(:title) { 'debug' }
 
-  let(:facts) {{
+  let(:facts) do
+    {
     :operatingsystem => 'Debian',
     :osfamily => 'Debian',
     :lsbdistcodename => 'jessie',
     :majdistrelease => '8',
     :operatingsystemmajrelease => 'jessie',
-  }}
+  }
+  end
   let(:run_dir){ '/etc/hindsight/run' }
 
   context 'creates plugin config file' do
@@ -29,12 +31,10 @@ describe 'hindsight::plugin', :type => :define do
     it { is_expected.to compile.with_all_deps }
     it { is_expected.to contain_concat('/etc/hindsight/run/output/debug.cfg') }
 
-    it { is_expected.to contain_concat__fragment(
-      'debug'
+    it {
+      is_expected.to contain_concat__fragment(
+        'debug'
       ).with_content(/matcher = "TRUE"/)
     }
-
   end
-
-
 end
