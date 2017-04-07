@@ -9,7 +9,7 @@ EOS
     end
 
     if args[0].instance_of? String
-      return "\"#{args[0]}\""
+      return "'#{args[0]}'"
     end
     return args[0]
   end
