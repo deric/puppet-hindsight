@@ -34,7 +34,7 @@ describe 'hindsight::plugin', :type => :define do
     it {
       is_expected.to contain_concat__fragment(
         'debug'
-      ).with_content(/matcher = "TRUE"/)
+      ).with_content(/matcher = 'TRUE'/)
     }
   end
 end
