@@ -35,4 +35,30 @@ describe 'hindsight' do
       it { expect { is_expected.to contain_package('hindsight') }.to raise_error(Puppet::Error, /Nexenta not supported/) }
     end
   end
+
+  context 'hindsight service' do
+    let(:facts) do
+      {
+        :osfamily        => 'Debian',
+        :operatingsystem => 'Debian',
+      }
+    end
+    describe 'allow passing pre-start commands' do
+      let(:params) do
+        {
+          :service_prestart => ['/bin/echo foo'],
+        }
+      end
+
+      it do
+        is_expected.to contain_file('/lib/systemd/system/hindsight.service').with({
+        'ensure'  => 'present',
+        'owner'   => 'root',
+        'group'   => 'root',
+        'mode'    => '0644',
+      }).with_content(/ExecStartPre=-\/bin\/echo foo/)
+      end
+
+    end
+  end
 end

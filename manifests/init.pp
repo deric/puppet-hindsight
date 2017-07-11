@@ -1,16 +1,20 @@
 #
+#
+# [service_prestart] array of commands to be executed before hindsight service start
+#
 class hindsight (
-  $package        = $::hindsight::params::package,
-  $modules        = $::hindsight::params::modules,
-  $user           = $::hindsight::params::user,
-  $group          = $::hindsight::params::group,
-  $service_name   = $::hindsight::params::service_name,
-  $service_ensure = $::hindsight::params::service_ensure,
-  $manage_service = $::hindsight::params::manage_service,
-  $conf_dir       = $::hindsight::params::conf_dir,
-  $output_dir     = $::hindsight::params::output_dir,
-  $decoders_dir   = $::hindsight::params::decoders_dir,
-  $run_dir        = $::hindsight::params::run_dir,
+  $package          = $::hindsight::params::package,
+  $modules          = $::hindsight::params::modules,
+  $user             = $::hindsight::params::user,
+  $group            = $::hindsight::params::group,
+  $service_name     = $::hindsight::params::service_name,
+  $service_ensure   = $::hindsight::params::service_ensure,
+  $manage_service   = $::hindsight::params::manage_service,
+  $conf_dir         = $::hindsight::params::conf_dir,
+  $output_dir       = $::hindsight::params::output_dir,
+  $decoders_dir     = $::hindsight::params::decoders_dir,
+  $run_dir          = $::hindsight::params::run_dir,
+  $service_prestart = [],
 ) inherits ::hindsight::params {
 
   validate_array($modules)
@@ -29,9 +33,10 @@ class hindsight (
 
   if $manage_service {
     class{'::hindsight::service':
-      service => $service_name,
-      ensure  => $service_ensure,
-      require => [    Class['hindsight::config']],
+      service  => $service_name,
+      ensure   => $service_ensure,
+      prestart => $service_prestart,
+      require  => [Class['hindsight::config']],
     }
     -> Class['::hindsight']
   }

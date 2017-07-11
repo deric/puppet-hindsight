@@ -5,6 +5,9 @@ After=syslog.target network-online.target
 [Service]
 Type=simple
 UMask=0007
+<% @prestart.each do |cmd| -%>
+ExecStartPre=-<%= cmd %>
+<% end -%>
 ExecStart=/usr/bin/hindsight /etc/hindsight/hindsight.cfg
 Restart=on-abort
 

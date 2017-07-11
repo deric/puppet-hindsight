@@ -3,6 +3,7 @@
 class hindsight::service (
   $service,
   $ensure,
+  $prestart = [],
   ){
 
     # service configuration

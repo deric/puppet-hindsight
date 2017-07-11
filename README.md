@@ -62,3 +62,12 @@ in order to disable plugin use `ensure => absent`:
   }
 ```
 
+## Service pre-start commands
+
+Before starting Hindsight service custom commands can be provided:
+
+```puppet
+  class{'::hindsight':
+    service_prestart => [ '/bin/echo foo', '/bin/echo bar']
+  }
+```
