@@ -8,6 +8,8 @@ Module for managing Mozilla's Hindsight configuration and service.
 
 ## Related projects
 
+Hindsight is a log forwarding engine (successor of Mozilla's Heka) implemented in low-level C with Lua scripting support.
+
   * [hindsight](https://github.com/mozilla-services/hindsight)
   * [lua_sandbox](https://github.com/mozilla-services/lua_sandbox)
   * [lua_sandbox_extensions](https://github.com/mozilla-services/lua_sandbox_extensions)
@@ -52,7 +54,7 @@ hindsight::plugin {'debug':
 ```
 in order to disable plugin use `ensure => absent`:
 
-```
+```puppet
   hindsight::plugin {'debug':
     ensure   => absent,
     filename => 'heka_debug.lua',
