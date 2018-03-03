@@ -3,6 +3,7 @@
 class hindsight::service (
   $service,
   $ensure,
+  $conf_dir,
   $prestart = [],
   ){
 
@@ -37,7 +38,8 @@ class hindsight::service (
       File['/lib/systemd/system/hindsight.service']
     ],
     subscribe  => [
-      File['/lib/systemd/system/hindsight.service']
+      File['/lib/systemd/system/hindsight.service'],
+      File["${conf_dir}/hindsight.cfg"],
     ],
   }
 

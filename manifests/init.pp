@@ -46,6 +46,7 @@ class hindsight (
       service  => $service_name,
       ensure   => $service_ensure,
       prestart => $service_prestart,
+      conf_dir => $conf_dir,
       require  => [Class['hindsight::config']],
     }
     -> Class['::hindsight']

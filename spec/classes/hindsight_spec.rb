@@ -51,6 +51,9 @@ describe 'hindsight' do
         }
       end
 
+      it { is_expected.to contain_service('hindsight')
+        .that_subscribes_to('File[/etc/hindsight/hindsight.cfg]') }
+
       it do
         is_expected.to contain_file('/lib/systemd/system/hindsight.service').with({
         'ensure'  => 'present',
