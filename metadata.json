@@ -1,6 +1,6 @@
 {
   "name": "deric-hindsight",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "author": "deric",
   "summary": "Manage Hindsight log processing service",
   "license": "Apache-2.0",
