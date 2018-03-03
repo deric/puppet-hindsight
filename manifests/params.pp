@@ -5,10 +5,18 @@ class hindsight::params {
     'Debian': {
       $package = 'hindsight'
       $service_name = 'hindsight'
+      $analysis_lua_path = '/usr/lib/luasandbox/modules/?.lua'
+      $analysis_lua_cpath = '/usr/lib/luasandbox/modules/?.so'
+      $io_lua_path = '/usr/lib/luasandbox/io_modules/?.lua'
+      $io_lua_cpath = '/usr/lib/luasandbox/io_modules/?.so'
     }
     'RedHat', 'Amazon': {
       $package = 'hindsight'
       $service_name = 'hindsight'
+      $analysis_lua_path = '/usr/lib64/luasandbox/modules/?.lua'
+      $analysis_lua_cpath = '/usr/lib64/luasandbox/modules/?.so'
+      $io_lua_path = '/usr/lib64/luasandbox/io_modules/?.lua'
+      $io_lua_cpath = '/usr/lib64/luasandbox/io_modules/?.so'
     }
     default: {
       fail("${::operatingsystem} not supported")

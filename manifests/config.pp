@@ -6,6 +6,11 @@ class hindsight::config (
   $conf_dir,
   $output_dir,
   $run_dir,
+  $analysis_lua_path,
+  $analysis_lua_cpath,
+  $analysis_threads,
+  $io_lua_path,
+  $io_lua_cpath,
   ){
 
   File {

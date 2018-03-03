@@ -6,20 +6,11 @@ sandbox_load_path       = nil -- disable dynamic loading
 sandbox_run_path        = "<%= @conf_dir %>/run"
 -- sandbox_install_path    = "/usr/share/luasandbox/sandboxes/heka" -- default
 
---[[ redhat
-analysis_threads        = 1
-analysis_lua_path       = "/usr/lib64/luasandbox/modules/?.lua"
-analysis_lua_cpath      = "/usr/lib64/luasandbox/modules/?.so"
-io_lua_path             = analysis_lua_path ..  ";/usr/lib64/luasandbox/io_modules/?.lua"
-io_lua_cpath            = analysis_lua_cpath .. ";/usr/lib64/luasandbox/io_modules/?.so"
---]]
-
---[[ debian --]]
-analysis_threads        = 1
-analysis_lua_path       = "/usr/lib/luasandbox/modules/?.lua"
-analysis_lua_cpath      = "/usr/lib/luasandbox/modules/?.so"
-io_lua_path             = analysis_lua_path ..  ";/usr/lib/luasandbox/io_modules/?.lua"
-io_lua_cpath            = analysis_lua_cpath .. ";/usr/lib/luasandbox/io_modules/?.so"
+analysis_threads        = <%= @analysis_threads %>
+analysis_lua_path       = "<%= @analysis_lua_path %>"
+analysis_lua_cpath      = "<%= @analysis_lua_cpath %>"
+io_lua_path             = analysis_lua_path ..  ";<%= @io_lua_path %>"
+io_lua_cpath            = analysis_lua_cpath .. ";<%= @io_lua_cpath %>"
 
 max_message_size        = 8e6 -- default
 -- backpressure            = 0 -- default

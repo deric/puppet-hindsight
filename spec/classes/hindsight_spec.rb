@@ -61,4 +61,27 @@ describe 'hindsight' do
 
     end
   end
+
+  context 'paths to libraries' do
+    let(:facts) do
+      {
+        :osfamily        => 'Debian',
+        :operatingsystem => 'Debian',
+      }
+    end
+
+    it do
+      is_expected.to contain_file('/etc/hindsight/hindsight.cfg').with({
+      'ensure'  => 'present',
+      'owner'   => 'root',
+      'group'   => 'root',
+      'mode'    => '0644',
+    }).with_content(/analysis_threads(\s+)=(\s+)1/)
+    end
+
+    it do
+      is_expected.to contain_file('/etc/hindsight/hindsight.cfg')
+        .with_content(/analysis_lua_path(\s+)=(\s+)"\/usr\/lib\/luasandbox\/modules\/?.lua"/)
+    end
+  end
 end
