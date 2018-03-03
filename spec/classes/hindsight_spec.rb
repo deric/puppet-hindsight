@@ -41,6 +41,7 @@ describe 'hindsight' do
       {
         :osfamily        => 'Debian',
         :operatingsystem => 'Debian',
+        :lsbdistcodename => 'jessie',
       }
     end
     describe 'allow passing pre-start commands' do
@@ -67,6 +68,7 @@ describe 'hindsight' do
       {
         :osfamily        => 'Debian',
         :operatingsystem => 'Debian',
+        :lsbdistcodename => 'jessie',
       }
     end
 
@@ -81,7 +83,7 @@ describe 'hindsight' do
 
     it do
       is_expected.to contain_file('/etc/hindsight/hindsight.cfg')
-        .with_content(/analysis_lua_path(\s+)=(\s+)"\/usr\/lib\/luasandbox\/modules\/?.lua"/)
+        .with_content(/analysis_lua_path(\s+)=(\s+)"\/usr\/lib\/luasandbox\/modules\/\?.lua/)
     end
   end
 end
