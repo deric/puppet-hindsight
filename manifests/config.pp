@@ -11,6 +11,7 @@ class hindsight::config (
   $analysis_threads,
   $io_lua_path,
   $io_lua_cpath,
+  $purge_configs,
   ){
 
   File {
@@ -45,11 +46,15 @@ class hindsight::config (
 
   file { "${run_dir}/input":
     ensure  => 'directory',
+    recurse => $purge_configs,
+    purge   => $purge_configs,
     require => File[$run_dir],
   }
 
   file { "${run_dir}/output":
     ensure  => 'directory',
+    recurse => $purge_configs,
+    purge   => $purge_configs,
     require => File[$run_dir],
   }
 

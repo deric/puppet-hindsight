@@ -20,6 +20,7 @@ class hindsight (
   $analysis_threads   = 1,
   $io_lua_path        = $::hindsight::params::io_lua_path,
   $io_lua_cpath       = $::hindsight::params::io_lua_cpath,
+  $purge_configs       = $::hindsight::params::purge_configs,
 ) inherits ::hindsight::params {
 
   validate_array($modules)
@@ -39,6 +40,7 @@ class hindsight (
     analysis_threads   => $analysis_threads,
     io_lua_path        => $io_lua_path,
     io_lua_cpath       => $io_lua_cpath,
+    purge_configs      => $purge_configs,
   }
 
   if $manage_service {
