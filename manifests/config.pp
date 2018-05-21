@@ -12,6 +12,9 @@ class hindsight::config (
   $io_lua_path,
   $io_lua_cpath,
   $purge_configs,
+  $analysis_defaults,
+  $input_defaults,
+  $output_defaults,
   ){
 
   File {

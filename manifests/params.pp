@@ -42,4 +42,13 @@ class hindsight::params {
   $decoders_dir   = '/usr/lib/luasandbox/io_modules/decoders'
   $run_dir        = "${conf_dir}/run"
   $purge_configs  = true
+  $analysis_defaults = {
+    'ticker_interval' => 60,
+  }
+  $input_defaults = {
+    'instruction_limit' => 0,
+  }
+  $output_defaults = {
+    'ticker_interval' => 60,
+  }
 }
