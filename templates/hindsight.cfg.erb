@@ -23,45 +23,14 @@ analysis_defaults = {
 <% end -%>
 }
 
--- analysis_defaults = {
---    output_limit          = 1024 * 64,        -- default
---    memory_limit          = 1024 * 1024 * 8,  -- default
---    instruction_limit     = 1000000,          -- default
---    preserve_data         = false,            -- default
---    restricted_headers    = false,            -- default
---      ticker_interval       = 60,
---    shutdown_on_terminate = false,            -- default
--- }
-
 input_defaults = {
 <% @input_defaults.sort.each do |k, v| -%>
   <%= k %> = <%= v %>,
 <% end -%>
 }
 
--- input_defaults = {
---    output_limit          = 1024 * 64,        -- default
---    memory_limit          = 1024 * 1024 * 8,  -- default
---    instruction_limit     = 0,
---    preserve_data         = false,            -- default
---    restricted_headers    = true,             -- default
---    ticker_interval       = 0,                -- default
---    shutdown_on_terminate = false,            -- default
--- }
-
 output_defaults = {
 <% @output_defaults.sort.each do |k, v| -%>
   <%= k %> = <%= v %>,
 <% end -%>
 }
-
--- output_defaults = {
---    output_limit          = 1024 * 64,        -- default
---    memory_limit          = 1024 * 1024 * 8,  -- default
---    instruction_limit     = 1000000,          -- default
---    preserve_data         = false,            -- default
---    restricted_headers    = false,            -- default
---    ticker_interval       = 60,
---    shutdown_on_terminate = false,            -- default
---    remove_checkpoints_on_terminate = false,  -- default
--- }
