@@ -27,9 +27,9 @@ end
 
 group :development do
   gem "guard-rake"
-  gem "puppet-blacksmith"
   gem "travis"
   gem "travis-lint"
+  gem 'puppet-blacksmith', git: 'https://github.com/deric/puppet-blacksmith', branch: 'tag-order'
 end
 
 group :system_tests do
