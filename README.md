@@ -62,6 +62,22 @@ in order to disable plugin use `ensure => absent`:
   }
 ```
 
+New since version 0.2.x (XXX: TODO)
+
+```puppet
+  hindsight::plugin {'debug':
+    filename => '',
+    target   => output/debug',
+    content  => template('path/to/template.erb');
+  }
+  # or
+  hindsight::plugin {'debug':
+    filename => '',
+    target   => output/debug',
+    source   => 'puppet:///fubarmodule/debug.cfg';
+  }
+```
+
 ## Service pre-start commands
 
 Before starting Hindsight service custom commands can be provided:
