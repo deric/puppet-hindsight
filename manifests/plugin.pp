@@ -30,7 +30,7 @@ define hindsight::plugin (
     }
 
     # if one gives a CONTENT or SOURCE arg, take that
-    if defined('$content') or defined('$source') {
+    if $content != undef or $source != undef {
       concat::fragment { $title:
         target  => $path,
         content => $content,
