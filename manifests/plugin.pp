@@ -29,21 +29,25 @@ define hindsight::plugin (
       }
     }
 
-    # if one gives a CONTENT or SOURCE arg, take that
-    if $content != undef or $source != undef {
-      concat::fragment { $title:
+    concat::fragment { $title:
         target  => $path,
-        content => $content,
-        source  => $source,
-        order   => $order;
-      }
-    } else {
-      concat::fragment { $title:
-        target  => $path,
-        content =>  template('hindsight/plugin.cfg.erb'),
-        order   => $order;
-      }
+        order   => $order,
     }
+
+    if $content {
+        Concat::Fragment<| title == $title |> {
+            content => $content,
+        }
+    } elsif $source {
+        Concat::Fragment<| title == $title |> {
+            source => $source,
+        }
+    } else {
+        Concat::Fragment<| title == $title |> {
+            content =>  template('hindsight/plugin.cfg.erb'),
+        }
+    }
+
     if $manage_service {
       Concat::Fragment<| title == $title |> {
         notify => Service[$service_name]
