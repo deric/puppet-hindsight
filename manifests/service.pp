@@ -1,10 +1,20 @@
-# Hindsight service
+# @summary
+#  Manage Hindsight service
+#
+# @param service_name
+#   Name of service running Hindsight daemon
+# @param service_ensure
+#    Possible values `running`,`stoppped`,`true`, `false`
+# @param conf_dir
+#   Directory where main Hidsight configuration resides
+# @param service_prestart
+#   Array of commands to be executed before hindsight service start
 #
 class hindsight::service (
-  $service,
-  $ensure,
-  $conf_dir,
-  $prestart = [],
+  String                  $service,
+  Variant[Boolean,String] $ensure,
+  Stdlib::Absolutepath    $conf_dir,
+  Array[String]           $prestart = [],
   ){
 
     # service configuration

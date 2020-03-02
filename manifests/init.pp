@@ -1,32 +1,63 @@
+# @summary
+#   Manage Hidsight service configuration
 #
-#
-# [service_prestart] array of commands to be executed before hindsight service start
+# @param package
+#   Hindsight package name to be installed via system package
+# @param modules
+#   Optional modules (luasandbox extensions e.g. `['luasandbox-lpeg']`)
+# @param user
+#   The owner of config files
+# @param group
+#   The group for config files
+# @param service_name
+#   Name of service running Hindsight daemon
+# @param service_ensure
+#    Possible values `running`,`stoppped`,`true`, `false`
+# @param service_prestart
+#   Array of commands to be executed before hindsight service start
+# @param conf_dir
+#   Directory where main Hidsight configuration resides
+# @param output_dir
+#   Path where the protobuf streams, checkpoints and statistics are stored.
+# @param run_dir
+#   Base path containing the running configis and dynamically loaded lua, by default `conf_dir/run`
+# @param analysissis_lua_path
+#   Path used by the analysis plugins to look for Lua modules
+# @param analysis_lua_cpath
+#   Path used by the analysis plugins to look for Lua C modules
+# @param purge_configs
+#   Removed configs that are not managed by this module
+# @param analysis_defaults
+#   Hash overriding default sandbox configuration variables. See https://mozilla-services.github.io/hindsight/configuration.html
+# @param input_defaults
+#   Hash overriding default sandbox configuration variables. See https://mozilla-services.github.io/hindsight/configuration.html
+# @param output_defaults
+#   Hash overriding default sandbox configuration variables. See https://mozilla-services.github.io/hindsight/configuration.html
+
 #
 class hindsight (
-  $package            = $::hindsight::params::package,
-  $modules            = $::hindsight::params::modules,
-  $user               = $::hindsight::params::user,
-  $group              = $::hindsight::params::group,
-  $service_name       = $::hindsight::params::service_name,
-  $service_ensure     = $::hindsight::params::service_ensure,
-  $manage_service     = $::hindsight::params::manage_service,
-  $conf_dir           = $::hindsight::params::conf_dir,
-  $output_dir         = $::hindsight::params::output_dir,
-  $decoders_dir       = $::hindsight::params::decoders_dir,
-  $run_dir            = $::hindsight::params::run_dir,
-  $service_prestart   = [],
-  $analysis_lua_path  = $::hindsight::params::analysis_lua_path,
-  $analysis_lua_cpath = $::hindsight::params::analysis_lua_cpath,
-  $analysis_threads   = 1,
-  $io_lua_path        = $::hindsight::params::io_lua_path,
-  $io_lua_cpath       = $::hindsight::params::io_lua_cpath,
-  $purge_configs      = $::hindsight::params::purge_configs,
-  $analysis_defaults  = $::hindsight::params::analysis_defaults,
-  $input_defaults     = $::hindsight::params::input_defaults,
-  $output_defaults    = $::hindsight::params::output_defaults,
-) inherits ::hindsight::params {
-
-  validate_array($modules)
+  String                  $package            = $::hindsight::params::package,
+  Array[String]           $modules            = $::hindsight::params::modules,
+  String                  $user               = $::hindsight::params::user,
+  String                  $group              = $::hindsight::params::group,
+  String                  $service_name       = $::hindsight::params::service_name,
+  Variant[Boolean,String] $service_ensure     = $::hindsight::params::service_ensure,
+  Boolean                 $manage_service     = $::hindsight::params::manage_service,
+  Array[String]           $service_prestart   = [],
+  Stdlib::Absolutepath    $conf_dir           = $::hindsight::params::conf_dir,
+  Stdlib::Absolutepath    $output_dir         = $::hindsight::params::output_dir,
+  Stdlib::Absolutepath    $decoders_dir       = $::hindsight::params::decoders_dir,
+  Stdlib::Absolutepath    $run_dir            = $::hindsight::params::run_dir,
+  Stdlib::Absolutepath    $analysis_lua_path  = $::hindsight::params::analysis_lua_path,
+  Stdlib::Absolutepath    $analysis_lua_cpath = $::hindsight::params::analysis_lua_cpath,
+  Integer                 $analysis_threads   = 1,
+  Stdlib::Absolutepath    $io_lua_path        = $::hindsight::params::io_lua_path,
+  Stdlib::Absolutepath    $io_lua_cpath       = $::hindsight::params::io_lua_cpath,
+  Boolean                 $purge_configs      = $::hindsight::params::purge_configs,
+  Hash                    $analysis_defaults  = $::hindsight::params::analysis_defaults,
+  Hash                    $input_defaults     = $::hindsight::params::input_defaults,
+  Hash                    $output_defaults    = $::hindsight::params::output_defaults,
+) inherits hindsight::params {
 
   class { 'hindsight::install':
     package => $package,

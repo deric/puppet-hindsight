@@ -1,17 +1,38 @@
-# [*filename*] Lua file require
+# @summary
+#   Hindsight plugin configuration
 #
+# @param filename
+#   Name of Lua file to require
+# @param target
+#   Filename to write configuration (`.cfg` will be appended)
+# @param ensure
+#   Config file ensure (either `present` or `absent`)
+# @param order
+#   Concat order (in config file)
+# @param config
+#   Plugin configuration
+# @param manage_service
+#   When true Hindsight service will be restarted upon change
+# @param service_name
+#   Hindsight service name
+# @param run_dir
+#   sandbox_run directory
+# @param content
+#   Template to load config from
+# @param source
+#   Path from which config should be loaded
 #
 define hindsight::plugin (
-  $filename,
-  $target,
-  $ensure = 'present',
-  $order = 1,
-  $config = {},
-  $manage_service = $::hindsight::manage_service,
-  $service_name   = $::hindsight::service_name,
-  $run_dir        = $::hindsight::run_dir,
-  $content        = undef,
-  $source         = undef,
+  String                   $filename,
+  String                   $target,
+  Enum['present','absent'] $ensure         = 'present',
+  Integer[1]               $order          = 1,
+  Optional[Hash]           $config         = {},
+  Boolean                  $manage_service = $::hindsight::manage_service,
+  String                   $service_name   = $::hindsight::service_name,
+  Stdlib::Absolutepath     $run_dir        = $::hindsight::run_dir,
+  Optional[String]         $content        = undef,
+  Optional[String]         $source         = undef,
 ){
   $path = "${run_dir}/${target}.cfg"
 
@@ -35,17 +56,17 @@ define hindsight::plugin (
     }
 
     if $content {
-        Concat::Fragment<| title == $title |> {
-            content => $content,
-        }
+      Concat::Fragment<| title == $title |> {
+        content => $content,
+      }
     } elsif $source {
-        Concat::Fragment<| title == $title |> {
-            source => $source,
-        }
+      Concat::Fragment<| title == $title |> {
+        source => $source,
+      }
     } else {
-        Concat::Fragment<| title == $title |> {
-            content =>  template('hindsight/plugin.cfg.erb'),
-        }
+      Concat::Fragment<| title == $title |> {
+        content =>  template('hindsight/plugin.cfg.erb'),
+      }
     }
 
     if $manage_service {

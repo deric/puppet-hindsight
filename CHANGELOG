@@ -1,4 +1,10 @@
-## 2018-05-18 v0.2.1
+## 2020-03-02 v0.3.0
+ - Puppet 6 support
+ - Enforce Puppet 4 types
+ - Support a content or source argument for plugins (#2)
+ - Drop Puppet 3 support
+
+## 2018-05-18 v0.2.1/v0.2.2
  - Support purging config directories
  - Allow overriding analysis,input and output defaults
 
