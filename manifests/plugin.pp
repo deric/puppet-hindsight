@@ -30,8 +30,8 @@ define hindsight::plugin (
     }
 
     concat::fragment { $title:
-        target  => $path,
-        order   => $order,
+      target => $path,
+      order  => $order,
     }
 
     if $content {

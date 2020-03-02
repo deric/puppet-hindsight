@@ -28,11 +28,11 @@ class hindsight (
 
   validate_array($modules)
 
-  class { '::hindsight::install':
+  class { 'hindsight::install':
     package => $package,
     modules => $modules,
   }
-  -> class{'::hindsight::config':
+  -> class{'hindsight::config':
     user               => $user,
     group              => $group,
     conf_dir           => $conf_dir,
@@ -50,14 +50,14 @@ class hindsight (
   }
 
   if $manage_service {
-    class{'::hindsight::service':
+    class{'hindsight::service':
       service  => $service_name,
       ensure   => $service_ensure,
       prestart => $service_prestart,
       conf_dir => $conf_dir,
       require  => [Class['hindsight::config']],
     }
-    -> Class['::hindsight']
+    -> Class['hindsight']
   }
 
 }
