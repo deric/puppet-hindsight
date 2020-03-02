@@ -6,6 +6,7 @@ before_install: rm Gemfile.lock || true
 rvm:
   - 2.1.10
   - 2.3.3
+  - 2.5.5
 cache:
   - bundler
 script:
@@ -13,15 +14,7 @@ script:
   - RAKE_ENV=ci bundle exec rake spec
   - RAKE_ENV=ci bundle exec rake lint
 env:
-  - PUPPET_GEM_VERSION="~> 3.5.0" STRICT_VARIABLES=yes
-  - PUPPET_GEM_VERSION="~> 3.6.0" STRICT_VARIABLES=yes
-  - PUPPET_GEM_VERSION="~> 3.7.0" STRICT_VARIABLES=yes
   - PUPPET_GEM_VERSION="~> 3.8.0" STRICT_VARIABLES=yes FUTURE_PARSER=yes
-  - PUPPET_GEM_VERSION="~> 4.7.0" STRICT_VARIABLES=yes
-  - PUPPET_GEM_VERSION="~> 4.8.0" STRICT_VARIABLES=yes
-  - PUPPET_GEM_VERSION="~> 4.9.0" STRICT_VARIABLES=yes
   - PUPPET_GEM_VERSION="~> 4.10.0" STRICT_VARIABLES=yes
-matrix:
-  exclude:
-  - rvm: 2.1.0
-    env: PUPPET_GEM_VERSION="~> 3.4.0"
+  - PUPPET_GEM_VERSION="~> 5.5" STRICT_VARIABLES=yes PARALLEL_TEST_PROCESSORS=4
+  - PUPPET_GEM_VERSION="~> 6.0" STRICT_VARIABLES=yes PARALLEL_TEST_PROCESSORS=4
