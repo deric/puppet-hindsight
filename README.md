@@ -62,7 +62,7 @@ in order to disable plugin use `ensure => absent`:
   }
 ```
 
-New since version 0.2.x (XXX: TODO)
+New since version `0.3.0`
 
 ```puppet
   hindsight::plugin {'debug':
