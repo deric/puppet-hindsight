@@ -5,8 +5,8 @@ group :test do
   gem "metadata-json-lint"
   gem "puppet", ENV['PUPPET_GEM_VERSION'] || '> 4.4.0'
   gem "puppetlabs_spec_helper"
-  gem "rake", '< 12.0'
-  gem "rspec", '< 3.2.0'
+  gem "rake", ">= 12.3.3"
+  gem "rspec", '> 3.2.0'
   gem "rspec-puppet", '>= 2.5.0'
   gem "rspec-puppet-facts"
   gem 'rubocop', '> 0.33.0'
