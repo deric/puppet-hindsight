@@ -47,6 +47,7 @@ PuppetSyntax.exclude_paths = exclude_paths
 # offers more possibilities like explicit version management, forge downloads,...
 task :librarian_spec_prep do
   sh 'librarian-puppet install --path=spec/fixtures/modules/'
+  sh 'librarian-puppet show'
 end
 task :spec_prep => :librarian_spec_prep
 

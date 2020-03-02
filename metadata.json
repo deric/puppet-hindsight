@@ -1,6 +1,6 @@
 {
   "name": "deric-hindsight",
-  "version": "0.2.2",
+  "version": "0.3.0-dev",
   "author": "deric",
   "summary": "Manage Hindsight log processing service",
   "license": "Apache-2.0",
@@ -10,11 +10,11 @@
   "dependencies": [
     {
       "name": "puppetlabs-stdlib",
-      "version_requirement": ">= 4.2.0 < 5.0.0"
+      "version_requirement": ">= 4.2.0 < 7.0.0"
     },
     {
       "name": "puppetlabs-concat",
-      "version_requirement": ">= 1.2.0 < 3.0.0"
+      "version_requirement": ">= 1.2.0 < 7.0.0"
     }
   ],
   "operatingsystem_support": [
@@ -24,7 +24,8 @@
         "6",
         "7",
         "8",
-        "9"
+        "9",
+        "10"
       ]
     },
     {
@@ -33,7 +34,8 @@
         "10.04",
         "12.04",
         "14.04",
-        "16.04"
+        "16.04",
+        "18.04"
       ]
     },
     {
