@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source "https://rubygems.org"
 
 group :test do
@@ -27,9 +29,9 @@ end
 
 group :development do
   gem "guard-rake"
+  gem 'puppet-blacksmith', git: 'https://github.com/deric/puppet-blacksmith', branch: 'tag-order'
   gem "travis"
   gem "travis-lint"
-  gem 'puppet-blacksmith', git: 'https://github.com/deric/puppet-blacksmith', branch: 'tag-order'
 end
 
 group :system_tests do

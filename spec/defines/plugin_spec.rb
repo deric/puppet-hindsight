@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'hindsight::plugin', :type => :define do
@@ -5,12 +7,12 @@ describe 'hindsight::plugin', :type => :define do
 
   let(:facts) do
     {
-    :operatingsystem => 'Debian',
-    :osfamily => 'Debian',
-    :lsbdistcodename => 'jessie',
-    :majdistrelease => '8',
-    :operatingsystemmajrelease => 'jessie',
-  }
+      :operatingsystem => 'Debian',
+      :osfamily => 'Debian',
+      :lsbdistcodename => 'jessie',
+      :majdistrelease => '8',
+      :operatingsystemmajrelease => 'jessie',
+    }
   end
   let(:run_dir){ '/etc/hindsight/run' }
 

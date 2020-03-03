@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rubygems'
 require 'bundler/setup'
 
@@ -8,13 +10,7 @@ require 'puppet-lint/tasks/puppet-lint'
 require 'puppet-syntax/tasks/puppet-syntax'
 require 'metadata-json-lint/rake_task'
 require 'rubocop/rake_task'
-
-# These gems aren't always present, for instance
-# on Travis with --without development
-begin
-  require 'puppet_blacksmith/rake_tasks'
-rescue LoadError # rubocop:disable Lint/HandleExceptions
-end
+require 'puppet_blacksmith/rake_tasks'
 
 RuboCop::RakeTask.new
 
@@ -63,9 +59,9 @@ end
 
 desc "Run syntax, lint, and spec tests."
 task :test => %i[
-metadata_lint
-syntax
-lint
-rubocop
-spec
+  metadata_lint
+  syntax
+  lint
+  rubocop
+  spec
 ]

@@ -1,9 +1,10 @@
 #! /usr/bin/env ruby -S rspec
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'rspec-puppet'
 
 describe 'hindsight_escape' do
-
   describe 'escapes string' do
     it 'convert simple hash' do
       param = "foo"
@@ -18,8 +19,5 @@ describe 'hindsight_escape' do
     it 'should raise an error with incorrect type of arguments' do
       is_expected.to run.with_params(1, 2).and_raise_error(Puppet::ParseError)
     end
-
-
   end
-
 end

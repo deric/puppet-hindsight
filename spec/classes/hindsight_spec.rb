@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'hindsight' do
@@ -27,7 +29,7 @@ describe 'hindsight' do
     describe 'hindsight class without any parameters on Solaris/Nexenta' do
       let(:facts) do
         {
-          :osfamily        => 'Solaris',
+          :osfamily => 'Solaris',
           :operatingsystem => 'Nexenta',
         }
       end
@@ -39,7 +41,7 @@ describe 'hindsight' do
   context 'hindsight service' do
     let(:facts) do
       {
-        :osfamily        => 'Debian',
+        :osfamily => 'Debian',
         :operatingsystem => 'Debian',
         :lsbdistcodename => 'jessie',
       }
@@ -51,37 +53,42 @@ describe 'hindsight' do
         }
       end
 
-      it { is_expected.to contain_service('hindsight')
-        .that_subscribes_to('File[/etc/hindsight/hindsight.cfg]') }
+      it {
+        is_expected.to contain_service('hindsight')
+          .that_subscribes_to('File[/etc/hindsight/hindsight.cfg]')
+}
 
       it do
-        is_expected.to contain_file('/lib/systemd/system/hindsight.service').with({
-        'ensure'  => 'present',
-        'owner'   => 'root',
-        'group'   => 'root',
-        'mode'    => '0644',
-      }).with_content(/ExecStartPre=-\/bin\/echo foo/)
+        is_expected.to contain_file(
+          '/lib/systemd/system/hindsight.service'
+        ).with({
+                 'ensure' => 'present',
+                 'owner' => 'root',
+                 'group' => 'root',
+                 'mode' => '0644',
+               }).with_content(/ExecStartPre=-\/bin\/echo foo/)
       end
-
     end
   end
 
   context 'paths to libraries' do
     let(:facts) do
       {
-        :osfamily        => 'Debian',
+        :osfamily => 'Debian',
         :operatingsystem => 'Debian',
         :lsbdistcodename => 'jessie',
       }
     end
 
     it do
-      is_expected.to contain_file('/etc/hindsight/hindsight.cfg').with({
-      'ensure'  => 'present',
-      'owner'   => 'root',
-      'group'   => 'root',
-      'mode'    => '0644',
-    }).with_content(/analysis_threads(\s+)=(\s+)1/)
+      is_expected.to contain_file(
+        '/etc/hindsight/hindsight.cfg'
+      ).with({
+               'ensure' => 'present',
+               'owner' => 'root',
+               'group' => 'root',
+               'mode' => '0644',
+             }).with_content(/analysis_threads(\s+)=(\s+)1/)
     end
 
     it do
@@ -94,7 +101,7 @@ describe 'hindsight' do
   context 'support defaults configuration' do
     let(:facts) do
       {
-        :osfamily        => 'Debian',
+        :osfamily => 'Debian',
         :operatingsystem => 'Debian',
         :lsbdistcodename => 'jessie',
       }
@@ -109,12 +116,14 @@ describe 'hindsight' do
     end
 
     it do
-      is_expected.to contain_file('/etc/hindsight/hindsight.cfg').with({
-      'ensure'  => 'present',
-      'owner'   => 'root',
-      'group'   => 'root',
-      'mode'    => '0644',
-    }).with_content(/restricted_headers(\s+)=(\s+)true/)
+      is_expected.to contain_file(
+        '/etc/hindsight/hindsight.cfg'
+      ).with({
+               'ensure' => 'present',
+               'owner' => 'root',
+               'group' => 'root',
+               'mode' => '0644',
+             }).with_content(/restricted_headers(\s+)=(\s+)true/)
     end
   end
 end

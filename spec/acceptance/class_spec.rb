@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 require 'spec_helper_acceptance'
 
 describe 'hindsight class' do
   context 'default parameters' do
     # Using puppet_apply as a helper
     it 'should work idempotently with no errors' do
-      pp = <<-EOS
+      pp = <<-PUPPET
       class { 'hindsight': }
-      EOS
+      PUPPET
 
       # Run it twice and test for idempotency
       apply_manifest(pp, :catch_failures => true)
