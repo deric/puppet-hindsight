@@ -10,7 +10,7 @@ require 'puppet-lint/tasks/puppet-lint'
 require 'puppet-syntax/tasks/puppet-syntax'
 require 'metadata-json-lint/rake_task'
 require 'rubocop/rake_task'
-require 'puppet_blacksmith/rake_tasks'
+require 'puppet_blacksmith/rake_tasks' unless ENV['RAKE_ENV'] == 'ci'
 
 RuboCop::RakeTask.new
 

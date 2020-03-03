@@ -12,6 +12,7 @@ script:
   - RAKE_ENV=ci bundle exec rake validate
   - RAKE_ENV=ci bundle exec rake spec
   - RAKE_ENV=ci bundle exec rake lint
+  - RAKE_ENV=ci bundle exec rake rubocop
 env:
   - PUPPET_GEM_VERSION="~> 4.10.0" STRICT_VARIABLES=yes
   - PUPPET_GEM_VERSION="~> 5.5" STRICT_VARIABLES=yes PARALLEL_TEST_PROCESSORS=4
