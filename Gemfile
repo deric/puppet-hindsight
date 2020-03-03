@@ -27,7 +27,6 @@ end
 
 group :development do
   gem "guard-rake"
-  gem 'pdk', '>= 1.0'
   gem "travis"
   gem "travis-lint"
   gem 'puppet-blacksmith', git: 'https://github.com/deric/puppet-blacksmith', branch: 'tag-order'
