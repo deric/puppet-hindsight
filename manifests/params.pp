@@ -9,7 +9,7 @@ class hindsight::params {
       $analysis_lua_cpath = '/usr/lib/luasandbox/modules/?.so'
 
       case $::lsbdistcodename {
-        'stretch': {
+        'stretch','buster': {
           $io_lua_path = '/usr/lib/luasandbox/io_modules/?.lua;/usr/lib/x86_64-linux-gnu/lua/5.1/?.lua'
           $io_lua_cpath = '/usr/lib/luasandbox/io_modules/?.so;/usr/lib/x86_64-linux-gnu/lua/5.1/?.so'
         }
