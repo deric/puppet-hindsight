@@ -126,4 +126,31 @@ describe 'hindsight' do
              }).with_content(/restricted_headers(\s+)=(\s+)true/)
     end
   end
+
+  context 'with hostname' do
+    let(:facts) do
+      {
+        :osfamily => 'Debian',
+        :operatingsystem => 'Debian',
+        :lsbdistcodename => 'jessie',
+      }
+    end
+
+    let(:params) do
+      {
+        hostname: 'test.localhost'
+      }
+    end
+
+    it do
+      is_expected.to contain_file(
+        '/etc/hindsight/hindsight.cfg'
+      ).with({
+               'ensure' => 'present',
+               'owner' => 'root',
+               'group' => 'root',
+               'mode' => '0644',
+             }).with_content(/hostname(\s+)=(\s+)"test.localhost"/)
+    end
+  end
 end

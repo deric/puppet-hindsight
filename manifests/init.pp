@@ -57,6 +57,7 @@ class hindsight (
   Hash                    $analysis_defaults  = $::hindsight::params::analysis_defaults,
   Hash                    $input_defaults     = $::hindsight::params::input_defaults,
   Hash                    $output_defaults    = $::hindsight::params::output_defaults,
+  Optional[String]        $hostname           = undef,
 ) inherits hindsight::params {
 
   class { 'hindsight::install':
@@ -78,6 +79,7 @@ class hindsight (
     analysis_defaults  => $analysis_defaults,
     input_defaults     => $input_defaults,
     output_defaults    => $output_defaults,
+    hostname           => $hostname,
   }
 
   if $manage_service {

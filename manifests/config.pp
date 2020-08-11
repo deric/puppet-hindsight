@@ -24,6 +24,8 @@
 #   Hash overriding default sandbox configuration variables. See https://mozilla-services.github.io/hindsight/configuration.html
 # @param output_defaults
 #   Hash overriding default sandbox configuration variables. See https://mozilla-services.github.io/hindsight/configuration.html
+# @param hostname
+#   Manually set hostname
 
 class hindsight::config (
   String               $user,
@@ -40,6 +42,7 @@ class hindsight::config (
   Hash                 $analysis_defaults,
   Hash                 $input_defaults,
   Hash                 $output_defaults,
+  Optional[String]     $hostname,
   ){
 
   File {

@@ -15,7 +15,9 @@ io_lua_cpath            = analysis_lua_cpath .. ";<%= @io_lua_cpath %>"
 max_message_size        = 8e6 -- default
 -- backpressure            = 0 -- default
 -- backpressure_disk_free  = 4 -- default
--- hostname                = -- default gethostname()
+<% if @hostname -%>
+hostname                = "<%= @hostname %>" -- default gethostname()
+<% end -%>
 
 analysis_defaults = {
 <% @analysis_defaults.sort.each do |k, v| -%>
