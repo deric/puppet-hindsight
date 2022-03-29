@@ -2,31 +2,31 @@
 
 require 'spec_helper'
 
-describe 'hindsight::plugin', :type => :define do
+describe 'hindsight::plugin', type: :define do
   let(:title) { 'debug' }
 
   let(:facts) do
     {
-      :operatingsystem => 'Debian',
-      :osfamily => 'Debian',
-      :lsbdistcodename => 'jessie',
-      :majdistrelease => '8',
-      :operatingsystemmajrelease => 'jessie',
+      operatingsystem: 'Debian',
+      osfamily: 'Debian',
+      lsbdistcodename: 'jessie',
+      majdistrelease: '8',
+      operatingsystemmajrelease: 'jessie',
     }
   end
-  let(:run_dir){ '/etc/hindsight/run' }
+  let(:run_dir) { '/etc/hindsight/run' }
 
   context 'creates plugin config file' do
     let(:params) do
       {
-        :filename => 'heka_debug.lua',
-        :target => 'output/debug',
-        :config => {
-          'matcher' => "TRUE",
+        filename: 'heka_debug.lua',
+        target: 'output/debug',
+        config: {
+          'matcher' => 'TRUE',
         },
-        :manage_service => false,
-        :service_name => 'hindsight',
-        :run_dir => run_dir,
+        manage_service: false,
+        service_name: 'hindsight',
+        run_dir: run_dir,
       }
     end
 
@@ -35,8 +35,8 @@ describe 'hindsight::plugin', :type => :define do
 
     it {
       is_expected.to contain_concat__fragment(
-        'debug'
-      ).with_content(/matcher = 'TRUE'/)
+        'debug',
+      ).with_content(%r{matcher = 'TRUE'})
     }
   end
 end
