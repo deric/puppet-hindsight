@@ -3,4 +3,4 @@ fixtures:
     hindsight: "#{source_dir}"
   forge_modules:
      stdlib: "puppetlabs/stdlib"
-     concat: "puppetlabs-concat"
+     concat: "puppetlabs/concat"
