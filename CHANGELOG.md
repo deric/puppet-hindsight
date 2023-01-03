@@ -1,7 +1,8 @@
-## 2022-03-29 v0.4.0
+## 2023-01-03 v0.4.0
  - Convert to PDK
  - Allow newer dependencies
  - Drop old distributions support
+ - Execute ldconfig
 
 ## 2020-03-03 v0.3.0
  - Puppet 6 support
