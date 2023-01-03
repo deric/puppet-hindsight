@@ -8,11 +8,16 @@
 # @param modules
 #   Optional modules (luasandbox extensions e.g. `['luasandbox-lpeg']`)
 #
-class hindsight::install(
-    String        $package,
-    Array[String] $modules,
-  ) {
-
+class hindsight::install (
+  String        $package,
+  Array[String] $modules,
+) {
   ensure_packages(concat([$package], $modules))
 
+  exec { 'ldconfig_update':
+    path        => ['/usr/bin', '/usr/sbin'],
+    command     => 'ldconfig',
+    subscribe   => Package[$package],
+    refreshonly => true,
+  }
 }

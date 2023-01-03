@@ -96,6 +96,11 @@ describe 'hindsight' do
       is_expected.to contain_file('/etc/hindsight/hindsight.cfg')
         .with_content(%r{analysis_lua_path(\s+)=(\s+)"/usr/lib/luasandbox/modules/\?.lua})
     end
+
+    it {
+      is_expected.to contain_exec('ldconfig_update')
+        .that_subscribes_to('Package[hindsight]')
+    }
   end
 
   context 'support defaults configuration' do
