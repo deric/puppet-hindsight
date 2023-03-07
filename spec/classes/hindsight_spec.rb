@@ -158,4 +158,28 @@ describe 'hindsight' do
              }).with_content(%r{hostname(\s+)=(\s+)"test.localhost"})
     end
   end
+
+  context 'package removal' do
+    let(:facts) do
+      {
+        osfamily: 'Debian',
+        operatingsystem: 'Debian',
+        lsbdistcodename: 'bullseye',
+      }
+    end
+
+    let(:params) do
+      {
+        package_ensure: 'absent'
+      }
+    end
+
+    it do
+      is_expected.to contain_package(
+        'hindsight',
+      ).with({
+               'ensure' => 'absent',
+             })
+    end
+  end
 end

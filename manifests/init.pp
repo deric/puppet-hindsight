@@ -33,38 +33,40 @@
 #   Hash overriding default sandbox configuration variables. See https://mozilla-services.github.io/hindsight/configuration.html
 # @param output_defaults
 #   Hash overriding default sandbox configuration variables. See https://mozilla-services.github.io/hindsight/configuration.html
-
+# @param package_ensure
+#   Ensure passed to installed packages
 #
 class hindsight (
-  String                  $package            = $::hindsight::params::package,
-  Array[String]           $modules            = $::hindsight::params::modules,
-  String                  $user               = $::hindsight::params::user,
-  String                  $group              = $::hindsight::params::group,
-  String                  $service_name       = $::hindsight::params::service_name,
-  Variant[Boolean,String] $service_ensure     = $::hindsight::params::service_ensure,
-  Boolean                 $manage_service     = $::hindsight::params::manage_service,
+  String                  $package            = $hindsight::params::package,
+  Array[String]           $modules            = $hindsight::params::modules,
+  String                  $user               = $hindsight::params::user,
+  String                  $group              = $hindsight::params::group,
+  String                  $service_name       = $hindsight::params::service_name,
+  Variant[Boolean,String] $service_ensure     = $hindsight::params::service_ensure,
+  Boolean                 $manage_service     = $hindsight::params::manage_service,
   Array[String]           $service_prestart   = [],
-  Stdlib::Absolutepath    $conf_dir           = $::hindsight::params::conf_dir,
-  Stdlib::Absolutepath    $output_dir         = $::hindsight::params::output_dir,
-  Stdlib::Absolutepath    $decoders_dir       = $::hindsight::params::decoders_dir,
-  Stdlib::Absolutepath    $run_dir            = $::hindsight::params::run_dir,
-  Stdlib::Absolutepath    $analysis_lua_path  = $::hindsight::params::analysis_lua_path,
-  Stdlib::Absolutepath    $analysis_lua_cpath = $::hindsight::params::analysis_lua_cpath,
+  Stdlib::Absolutepath    $conf_dir           = $hindsight::params::conf_dir,
+  Stdlib::Absolutepath    $output_dir         = $hindsight::params::output_dir,
+  Stdlib::Absolutepath    $decoders_dir       = $hindsight::params::decoders_dir,
+  Stdlib::Absolutepath    $run_dir            = $hindsight::params::run_dir,
+  Stdlib::Absolutepath    $analysis_lua_path  = $hindsight::params::analysis_lua_path,
+  Stdlib::Absolutepath    $analysis_lua_cpath = $hindsight::params::analysis_lua_cpath,
   Integer                 $analysis_threads   = 1,
-  Stdlib::Absolutepath    $io_lua_path        = $::hindsight::params::io_lua_path,
-  Stdlib::Absolutepath    $io_lua_cpath       = $::hindsight::params::io_lua_cpath,
-  Boolean                 $purge_configs      = $::hindsight::params::purge_configs,
-  Hash                    $analysis_defaults  = $::hindsight::params::analysis_defaults,
-  Hash                    $input_defaults     = $::hindsight::params::input_defaults,
-  Hash                    $output_defaults    = $::hindsight::params::output_defaults,
+  Stdlib::Absolutepath    $io_lua_path        = $hindsight::params::io_lua_path,
+  Stdlib::Absolutepath    $io_lua_cpath       = $hindsight::params::io_lua_cpath,
+  Boolean                 $purge_configs      = $hindsight::params::purge_configs,
+  Hash                    $analysis_defaults  = $hindsight::params::analysis_defaults,
+  Hash                    $input_defaults     = $hindsight::params::input_defaults,
+  Hash                    $output_defaults    = $hindsight::params::output_defaults,
+  String                  $package_ensure     = 'installed',
   Optional[String]        $hostname           = undef,
 ) inherits hindsight::params {
-
   class { 'hindsight::install':
-    package => $package,
-    modules => $modules,
+    package        => $package,
+    modules        => $modules,
+    package_ensure => $package_ensure,
   }
-  -> class{'hindsight::config':
+  -> class { 'hindsight::config':
     user               => $user,
     group              => $group,
     conf_dir           => $conf_dir,
@@ -83,7 +85,7 @@ class hindsight (
   }
 
   if $manage_service {
-    class{'hindsight::service':
+    class { 'hindsight::service':
       service  => $service_name,
       ensure   => $service_ensure,
       prestart => $service_prestart,
@@ -92,5 +94,4 @@ class hindsight (
     }
     -> Class['hindsight']
   }
-
 }
