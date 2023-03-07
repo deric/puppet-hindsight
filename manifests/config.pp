@@ -12,10 +12,16 @@
 #   Path where the protobuf streams, checkpoints and statistics are stored.
 # @param run_dir
 #   Base path containing the running configis and dynamically loaded lua, by default `conf_dir/run`
-# @param analysissis_lua_path
+# @param analysis_lua_path
 #   Path used by the analysis plugins to look for Lua modules
 # @param analysis_lua_cpath
 #   Path used by the analysis plugins to look for Lua C modules
+# @param io_lua_path
+#   Path to look for Lua io modules
+# @param io_lua_cpath
+#   Path to look for C io modules
+# @param analysis_threads
+#   Number of threads for analysis
 # @param purge_configs
 #   Removed configs that are not managed by this module
 # @param analysis_defaults
@@ -26,7 +32,6 @@
 #   Hash overriding default sandbox configuration variables. See https://mozilla-services.github.io/hindsight/configuration.html
 # @param hostname
 #   Manually set hostname
-
 class hindsight::config (
   String               $user,
   String               $group,
@@ -43,8 +48,7 @@ class hindsight::config (
   Hash                 $input_defaults,
   Hash                 $output_defaults,
   Optional[String]     $hostname,
-  ){
-
+) {
   File {
     owner   => $user,
     group   => $group,
@@ -60,7 +64,7 @@ class hindsight::config (
   }
 
   file { "${conf_dir}/hindsight.cfg":
-    ensure  => 'present',
+    ensure  => 'file',
     content => template('hindsight/hindsight.cfg.erb'),
     require => File[$conf_dir],
   }
@@ -88,5 +92,4 @@ class hindsight::config (
     purge   => $purge_configs,
     require => File[$run_dir],
   }
-
 }

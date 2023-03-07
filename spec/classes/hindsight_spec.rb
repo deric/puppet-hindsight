@@ -85,7 +85,7 @@ describe 'hindsight' do
       is_expected.to contain_file(
         '/etc/hindsight/hindsight.cfg',
       ).with({
-               'ensure' => 'present',
+               'ensure' => 'file',
                'owner' => 'root',
                'group' => 'root',
                'mode' => '0644',
@@ -124,7 +124,7 @@ describe 'hindsight' do
       is_expected.to contain_file(
         '/etc/hindsight/hindsight.cfg',
       ).with({
-               'ensure' => 'present',
+               'ensure' => 'file',
                'owner' => 'root',
                'group' => 'root',
                'mode' => '0644',
@@ -151,7 +151,7 @@ describe 'hindsight' do
       is_expected.to contain_file(
         '/etc/hindsight/hindsight.cfg',
       ).with({
-               'ensure' => 'present',
+               'ensure' => 'file',
                'owner' => 'root',
                'group' => 'root',
                'mode' => '0644',
