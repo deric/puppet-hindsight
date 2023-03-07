@@ -12,13 +12,17 @@
 # @param service_name
 #   Name of service running Hindsight daemon
 # @param service_ensure
-#    Possible values `running`,`stoppped`,`true`, `false`
+#   Possible values `running`,`stoppped`,`true`, `false`
+# @param manage_service
+#   Whether Puppet should manage the service
 # @param service_prestart
 #   Array of commands to be executed before hindsight service start
 # @param conf_dir
 #   Directory where main Hidsight configuration resides
 # @param output_dir
 #   Path where the protobuf streams, checkpoints and statistics are stored.
+# @param decoders_dir
+#   Path to decoders
 # @param run_dir
 #   Base path containing the running configis and dynamically loaded lua, by default `conf_dir/run`
 # @param analysis_lua_path
@@ -27,6 +31,12 @@
 #   Path used by the analysis plugins to look for Lua C modules
 # @param purge_configs
 #   Removed configs that are not managed by this module
+# @param analysis_threads
+#   Number of threads for analysis
+# @param io_lua_path
+#   Path to look for Lua io modules
+# @param io_lua_cpath
+#   Path to look for C io modules
 # @param analysis_defaults
 #   Hash overriding default sandbox configuration variables. See https://mozilla-services.github.io/hindsight/configuration.html
 # @param input_defaults
@@ -35,7 +45,8 @@
 #   Hash overriding default sandbox configuration variables. See https://mozilla-services.github.io/hindsight/configuration.html
 # @param package_ensure
 #   Ensure passed to installed packages
-#
+# @param hostname
+#   Manually set hostname
 class hindsight (
   String                  $package            = $hindsight::params::package,
   Array[String]           $modules            = $hindsight::params::modules,
