@@ -11,14 +11,14 @@ describe 'hindsight' do
     it { is_expected.to compile.with_all_deps }
 
     it { is_expected.to contain_class('hindsight::params') }
-    it { is_expected.to contain_class('hindsight::install').that_comes_before('hindsight::config') }
+    it { is_expected.to contain_class('hindsight::install').that_comes_before('Class[hindsight::config]') }
     it { is_expected.to contain_class('hindsight::config') }
-    it { is_expected.to contain_class('hindsight::service').that_subscribes_to('hindsight::config') }
+    it { is_expected.to contain_class('hindsight::service').that_requires('Class[hindsight::config]') }
 
     it { is_expected.to contain_service('hindsight') }
-    it { is_expected.to contain_package('hindsight').with_ensure('present') }
+    it { is_expected.to contain_package('hindsight').with_ensure('installed') }
 
-    it { is_expected.to contain_file('/etc/hindsight').with_ensure('present') }
+    it { is_expected.to contain_file('/etc/hindsight').with_ensure('directory') }
   end
 
   context 'allow passing pre-start commands' do
@@ -59,7 +59,7 @@ describe 'hindsight' do
 
     it do
       is_expected.to contain_file('/etc/hindsight/hindsight.cfg')
-        .with_content(%r{analysis_lua_path(\s+)=(\s+)"/usr/lib/luasandbox/modules/\?.lua})
+        .with_content(%r{analysis_lua_path(\s+)=(\s+)"/usr/lib64/luasandbox/modules/\?.lua})
     end
 
     it {
