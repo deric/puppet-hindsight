@@ -15,11 +15,10 @@ class hindsight::service (
   Variant[Boolean,String] $ensure,
   Stdlib::Absolutepath    $conf_dir,
   Array[String]           $prestart = [],
-  ){
-
-    # service configuration
+) {
+  # service configuration
   file { '/lib/systemd/system/hindsight.service':
-    ensure  => 'present',
+    ensure  => 'file',
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
@@ -52,5 +51,4 @@ class hindsight::service (
       File["${conf_dir}/hindsight.cfg"],
     ],
   }
-
 }

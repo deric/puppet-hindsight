@@ -63,7 +63,7 @@ describe 'hindsight' do
         is_expected.to contain_file(
           '/lib/systemd/system/hindsight.service',
         ).with({
-                 'ensure' => 'present',
+                 'ensure' => 'file',
                  'owner' => 'root',
                  'group' => 'root',
                  'mode' => '0644',

@@ -28,12 +28,12 @@ define hindsight::plugin (
   Enum['present','absent'] $ensure         = 'present',
   Integer[1]               $order          = 1,
   Optional[Hash]           $config         = {},
-  Boolean                  $manage_service = $::hindsight::manage_service,
-  String                   $service_name   = $::hindsight::service_name,
-  Stdlib::Absolutepath     $run_dir        = $::hindsight::run_dir,
+  Boolean                  $manage_service = $hindsight::manage_service,
+  String                   $service_name   = $hindsight::service_name,
+  Stdlib::Absolutepath     $run_dir        = $hindsight::run_dir,
   Optional[String]         $content        = undef,
   Optional[String]         $source         = undef,
-){
+) {
   $path = "${run_dir}/${target}.cfg"
 
   if $ensure == 'present' {
@@ -65,7 +65,7 @@ define hindsight::plugin (
       }
     } else {
       Concat::Fragment<| title == $title |> {
-        content =>  template('hindsight/plugin.cfg.erb'),
+        content => template('hindsight/plugin.cfg.erb'),
       }
     }
 
@@ -75,7 +75,7 @@ define hindsight::plugin (
       }
     }
   } else {
-    file {$path:
+    file { $path:
       ensure => $ensure,
     }
   }
