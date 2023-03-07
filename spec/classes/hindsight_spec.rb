@@ -59,7 +59,7 @@ describe 'hindsight' do
 
     it do
       is_expected.to contain_file('/etc/hindsight/hindsight.cfg')
-        .with_content(%r{analysis_lua_path(\s+)=(\s+)"/usr/lib64/luasandbox/modules/\?.lua})
+        .with_content(%r{analysis_lua_path(\s+)=(\s+)"/usr/(lib64|lib)/luasandbox/modules/\?.lua})
     end
 
     it {

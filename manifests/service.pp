@@ -1,13 +1,13 @@
 # @summary
 #  Manage Hindsight service
 #
-# @param service_name
+# @param service
 #   Name of service running Hindsight daemon
-# @param service_ensure
+# @param ensure
 #    Possible values `running`,`stoppped`,`true`, `false`
 # @param conf_dir
 #   Directory where main Hidsight configuration resides
-# @param service_prestart
+# @param prestart
 #   Array of commands to be executed before hindsight service start
 #
 class hindsight::service (
