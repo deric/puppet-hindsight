@@ -1,3 +1,8 @@
+## 2023-03-07 v0.5.0
+ - Use hierarchical facts
+ - Support package removal
+ - Improve tests
+
 ## 2023-01-03 v0.4.0
  - Convert to PDK
  - Allow newer dependencies
