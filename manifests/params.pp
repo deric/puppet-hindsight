@@ -1,14 +1,13 @@
 # Default param values
 class hindsight::params {
-
-  case $::osfamily {
+  case $facts['os']['family'] {
     'Debian': {
       $package = 'hindsight'
       $service_name = 'hindsight'
       $analysis_lua_path = '/usr/lib/luasandbox/modules/?.lua'
       $analysis_lua_cpath = '/usr/lib/luasandbox/modules/?.so'
 
-      case $::lsbdistcodename {
+      case $facts['os']['distro']['codename'] {
         'stretch','buster': {
           $io_lua_path = '/usr/lib/luasandbox/io_modules/?.lua;/usr/lib/x86_64-linux-gnu/lua/5.1/?.lua'
           $io_lua_cpath = '/usr/lib/luasandbox/io_modules/?.so;/usr/lib/x86_64-linux-gnu/lua/5.1/?.so'
@@ -28,7 +27,7 @@ class hindsight::params {
       $io_lua_cpath = '/usr/lib64/luasandbox/io_modules/?.so'
     }
     default: {
-      fail("${::operatingsystem} not supported")
+      fail("${facts['os']['name']} not supported")
     }
   }
 

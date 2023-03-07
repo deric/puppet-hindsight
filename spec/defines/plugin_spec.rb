@@ -7,11 +7,13 @@ describe 'hindsight::plugin', type: :define do
 
   let(:facts) do
     {
-      operatingsystem: 'Debian',
-      osfamily: 'Debian',
-      lsbdistcodename: 'jessie',
-      majdistrelease: '8',
-      operatingsystemmajrelease: 'jessie',
+      os: {
+        family: 'Debian',
+        name: 'Debian',
+        distro: {
+          codename: 'jessie'
+        },
+      },
     }
   end
   let(:run_dir) { '/etc/hindsight/run' }
