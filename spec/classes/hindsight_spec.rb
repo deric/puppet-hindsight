@@ -174,12 +174,7 @@ describe 'hindsight' do
       }
     end
 
-    it do
-      is_expected.to contain_package(
-        'hindsight',
-      ).with({
-               'ensure' => 'absent',
-             })
-    end
+    it { is_expected.to contain_package('hindsight').with_ensure('absent') }
+    it { is_expected.to contain_service('hindsight').with_ensure('stopped') }
   end
 end

@@ -85,9 +85,13 @@ class hindsight (
   }
 
   if $manage_service {
+    $_service_ensure = $package_ensure ? {
+      'absent' => 'stopped',
+      default  => $service_ensure,
+    }
     class { 'hindsight::service':
       service  => $service_name,
-      ensure   => $service_ensure,
+      ensure   => $_service_ensure,
       prestart => $service_prestart,
       conf_dir => $conf_dir,
       require  => [Class['hindsight::config']],
