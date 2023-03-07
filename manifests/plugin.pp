@@ -27,7 +27,7 @@ define hindsight::plugin (
   String                   $target,
   Enum['present','absent'] $ensure         = 'present',
   Integer[1]               $order          = 1,
-  Optional[Hash]           $config         = {},
+  Hash                     $config         = {},
   Boolean                  $manage_service = $hindsight::manage_service,
   String                   $service_name   = $hindsight::service_name,
   Stdlib::Absolutepath     $run_dir        = $hindsight::run_dir,

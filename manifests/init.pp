@@ -21,7 +21,7 @@
 #   Path where the protobuf streams, checkpoints and statistics are stored.
 # @param run_dir
 #   Base path containing the running configis and dynamically loaded lua, by default `conf_dir/run`
-# @param analysissis_lua_path
+# @param analysis_lua_path
 #   Path used by the analysis plugins to look for Lua modules
 # @param analysis_lua_cpath
 #   Path used by the analysis plugins to look for Lua C modules

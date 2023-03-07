@@ -119,7 +119,6 @@ describe 'hindsight' do
     it { is_expected.to contain_service('hindsight').with_ensure('stopped') }
   end
 
-
   context 'unsupported operating system' do
     describe 'hindsight class without any parameters on Solaris/Nexenta' do
       let(:facts) do
