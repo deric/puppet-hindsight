@@ -30,6 +30,10 @@
 #   Hash overriding default sandbox configuration variables. See https://mozilla-services.github.io/hindsight/configuration.html
 # @param output_defaults
 #   Hash overriding default sandbox configuration variables. See https://mozilla-services.github.io/hindsight/configuration.html
+# @param file_ensure
+#   Ensure passed to config files
+# @param dir_ensure
+#   Ensure passed to directories
 # @param hostname
 #   Manually set hostname
 class hindsight::config (
@@ -47,6 +51,8 @@ class hindsight::config (
   Hash                 $analysis_defaults,
   Hash                 $input_defaults,
   Hash                 $output_defaults,
+  String               $file_ensure = 'file',
+  String               $dir_ensure = 'directory',
   Optional[String]     $hostname,
 ) {
   File {
@@ -56,38 +62,38 @@ class hindsight::config (
   }
 
   file { $conf_dir:
-    ensure  => 'directory',
+    ensure  => $dir_ensure,
   }
 
   file { $output_dir:
-    ensure  => 'directory',
+    ensure  => $dir_ensure,
   }
 
   file { "${conf_dir}/hindsight.cfg":
-    ensure  => 'file',
+    ensure  => $file_ensure,
     content => template('hindsight/hindsight.cfg.erb'),
     require => File[$conf_dir],
   }
 
   file { $run_dir:
-    ensure  => 'directory',
+    ensure  => $dir_ensure,
     require => File[$conf_dir],
   }
 
   file { "${run_dir}/analysis":
-    ensure  => 'directory',
+    ensure  => $dir_ensure,
     require => File[$run_dir],
   }
 
   file { "${run_dir}/input":
-    ensure  => 'directory',
+    ensure  => $dir_ensure,
     recurse => $purge_configs,
     purge   => $purge_configs,
     require => File[$run_dir],
   }
 
   file { "${run_dir}/output":
-    ensure  => 'directory',
+    ensure  => $dir_ensure,
     recurse => $purge_configs,
     purge   => $purge_configs,
     require => File[$run_dir],

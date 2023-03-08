@@ -19,6 +19,10 @@ describe 'hindsight' do
     it { is_expected.to contain_package('hindsight').with_ensure('installed') }
 
     it { is_expected.to contain_file('/etc/hindsight').with_ensure('directory') }
+    it { is_expected.to contain_file('/etc/hindsight/run').with_ensure('directory') }
+    it { is_expected.to contain_file('/etc/hindsight/run/input').with_ensure('directory') }
+    it { is_expected.to contain_file('/etc/hindsight/run/output').with_ensure('directory') }
+    it { is_expected.to contain_file('/etc/hindsight/run/analysis').with_ensure('directory') }
   end
 
   context 'allow passing pre-start commands' do
@@ -114,6 +118,12 @@ describe 'hindsight' do
         package_ensure: 'absent'
       }
     end
+
+    it { is_expected.to contain_file('/etc/hindsight').with_ensure('absent') }
+    it { is_expected.to contain_file('/etc/hindsight/run').with_ensure('absent') }
+    it { is_expected.to contain_file('/etc/hindsight/run/input').with_ensure('absent') }
+    it { is_expected.to contain_file('/etc/hindsight/run/output').with_ensure('absent') }
+    it { is_expected.to contain_file('/etc/hindsight/run/analysis').with_ensure('absent') }
 
     it { is_expected.to contain_package('hindsight').with_ensure('absent') }
     it { is_expected.to contain_service('hindsight').with_ensure('stopped') }

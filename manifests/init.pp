@@ -77,7 +77,18 @@ class hindsight (
     modules        => $modules,
     package_ensure => $package_ensure,
   }
-  -> class { 'hindsight::config':
+
+  $_dir_ensure = $package_ensure ? {
+    'absent' => 'absent',
+    default  => 'directory',
+  }
+
+  $_file_ensure = $package_ensure ? {
+    'absent' => 'absent',
+    default  => 'file',
+  }
+
+  class { 'hindsight::config':
     user               => $user,
     group              => $group,
     conf_dir           => $conf_dir,
@@ -92,7 +103,10 @@ class hindsight (
     analysis_defaults  => $analysis_defaults,
     input_defaults     => $input_defaults,
     output_defaults    => $output_defaults,
+    dir_ensure         => $_dir_ensure,
+    file_ensure        => $_file_ensure,
     hostname           => $hostname,
+    require            => Class['hindsight::install'],
   }
 
   if $manage_service {

@@ -46,9 +46,14 @@ class hindsight::service (
     require    => [
       File['/lib/systemd/system/hindsight.service']
     ],
-    subscribe  => [
-      File['/lib/systemd/system/hindsight.service'],
-      File["${conf_dir}/hindsight.cfg"],
-    ],
+  }
+
+  if $ensure == 'running' or $ensure == true {
+    Service<| title == $service |> {
+      subscribe  => [
+        File['/lib/systemd/system/hindsight.service'],
+        File["${conf_dir}/hindsight.cfg"],
+      ],
+    }
   }
 }
