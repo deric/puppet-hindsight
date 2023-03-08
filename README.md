@@ -2,7 +2,7 @@
 
 [![Puppet
 Forge](http://img.shields.io/puppetforge/v/deric/hindsight.svg)](https://forge.puppetlabs.com/deric/hindsight) [![Puppet Forge
-Downloads](http://img.shields.io/puppetforge/dt/deric/hindsight.svg)](https://forge.puppetlabs.com/deric/hindsight/scores)
+Downloads](http://img.shields.io/puppetforge/dt/deric/hindsight.svg)](https://forge.puppetlabs.com/deric/hindsight/scores) [![Test](https://github.com/deric/puppet-hindsight/actions/workflows/test.yml/badge.svg)](https://github.com/deric/puppet-hindsight/actions/workflows/test.yml)
 
 Module for managing Mozilla's Hindsight configuration and service.
 
