@@ -23,6 +23,7 @@ describe 'hindsight' do
     it { is_expected.to contain_file('/etc/hindsight/run/input').with_ensure('directory') }
     it { is_expected.to contain_file('/etc/hindsight/run/output').with_ensure('directory') }
     it { is_expected.to contain_file('/etc/hindsight/run/analysis').with_ensure('directory') }
+    it { is_expected.to contain_file('/var/cache/hindsight').with_ensure('directory') }
   end
 
   context 'allow passing pre-start commands' do
