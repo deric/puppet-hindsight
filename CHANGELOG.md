@@ -1,3 +1,6 @@
+## 2023-03-08 v0.5.1
+ - Remove config directories when removing packages
+
 ## 2023-03-07 v0.5.0
  - Use hierarchical facts
  - Support package removal
