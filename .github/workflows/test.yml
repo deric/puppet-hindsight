@@ -1,33 +1,57 @@
 name: Test
 
 on:
-  - pull_request
   - push
-
-env:
-  BUNDLE_WITHOUT: release
+  - pull_request
 
 jobs:
+  rubocop:
+    env:
+      BUNDLE_WITHOUT: release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Ruby ${{ matrix.ruby }}
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.1"
+          bundler-cache: true
+      - name: Run Rubocop
+        run: bundle exec rake rubocop
+  lint:
+    env:
+      BUNDLE_WITHOUT: release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Ruby ${{ matrix.ruby }}
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.1"
+          bundler-cache: true
+      - name: Puppet Lint
+        run: bundle exec rake lint
   test:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         ruby:
-          - "3.0"
+          - "3.2"
+          - "3.1"
           - "2.7"
         puppet:
+          - "~> 8.0"
           - "~> 7.0"
-          - "~> 6.29"
         exclude:
-          - ruby: "3.0"
-            puppet: "~> 6.29"
+          - ruby: "2.7"
+            puppet: "~> 8.0"
 
     name: "Ruby ${{ matrix.ruby }} - Puppet ${{ matrix.puppet }}"
     env:
       PUPPET_VERSION: ${{ matrix.puppet }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Install Ruby ${{ matrix.ruby }}
         uses: ruby/setup-ruby@v1
         with:
@@ -35,5 +59,12 @@ jobs:
           bundler-cache: true
       - name: Run tests
         run: bundle exec rake spec
-      - name: Rubocop
-        run: bundle exec rake rubocop
+  tests:
+    needs:
+      - rubocop
+      - test
+      - lint
+    runs-on: ubuntu-latest
+    name: Test suite
+    steps:
+      - run: echo Test suite completed
