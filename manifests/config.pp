@@ -51,9 +51,9 @@ class hindsight::config (
   Hash                 $analysis_defaults,
   Hash                 $input_defaults,
   Hash                 $output_defaults,
+  Optional[String]     $hostname,
   String               $file_ensure = 'file',
   String               $dir_ensure = 'directory',
-  Optional[String]     $hostname,
 ) {
   File {
     owner   => $user,
