@@ -1,3 +1,8 @@
+## 2024-02-14 v0.6.0
+
+ - Puppet 8 support
+ - Support stdlib 9.x, concat 9.x
+
 ## 2023-03-08 v0.5.1
  - Remove config directories when removing packages
 
