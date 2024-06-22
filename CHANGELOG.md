@@ -1,3 +1,8 @@
+## 2024-06-22 v1.0.0
+
+ - Require stdlib >= 9
+ - Full Puppet 8 support
+
 ## 2024-02-14 v0.6.0
 
  - Puppet 8 support

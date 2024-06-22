@@ -15,7 +15,7 @@ class hindsight::install (
   Array[String] $modules,
   String        $package_ensure = 'installed',
 ) {
-  ensure_packages(concat([$package], $modules), { 'ensure' => $package_ensure })
+  stdlib::ensure_packages(concat([$package], $modules), { 'ensure' => $package_ensure })
 
   exec { 'ldconfig_update':
     path        => ['/usr/bin', '/usr/sbin'],
