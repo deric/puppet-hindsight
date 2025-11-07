@@ -62,11 +62,11 @@ class hindsight::config (
   }
 
   file { $conf_dir:
-    ensure  => $dir_ensure,
+    ensure => $dir_ensure,
   }
 
   file { $output_dir:
-    ensure  => $dir_ensure,
+    ensure => $dir_ensure,
   }
 
   file { "${conf_dir}/hindsight.cfg":
