@@ -1,1 +1,2 @@
---- {}
+---
+hindsight::max_message_size: 8e6

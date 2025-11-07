@@ -1,6 +1,7 @@
 # @summary
 #   Manage Hidsight service configuration
 #
+# @param max_message_size max size in bytes default: 8e6 (8MB)
 # @param package
 #   Hindsight package name to be installed via system package
 # @param modules
@@ -48,6 +49,7 @@
 # @param hostname
 #   Manually set hostname
 class hindsight (
+  String                  $max_message_size,
   String                  $package            = $hindsight::params::package,
   Array[String]           $modules            = $hindsight::params::modules,
   String                  $user               = $hindsight::params::user,
@@ -106,6 +108,7 @@ class hindsight (
     dir_ensure         => $_dir_ensure,
     file_ensure        => $_file_ensure,
     hostname           => $hostname,
+    max_message_size   => $max_message_size,
     require            => Class['hindsight::install'],
   }
 

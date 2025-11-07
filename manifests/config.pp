@@ -36,6 +36,7 @@
 #   Ensure passed to directories
 # @param hostname
 #   Manually set hostname
+# @param max_message_size in bytes
 class hindsight::config (
   String               $user,
   String               $group,
@@ -51,6 +52,7 @@ class hindsight::config (
   Hash                 $analysis_defaults,
   Hash                 $input_defaults,
   Hash                 $output_defaults,
+  String               $max_message_size,
   Optional[String]     $hostname,
   String               $file_ensure = 'file',
   String               $dir_ensure = 'directory',

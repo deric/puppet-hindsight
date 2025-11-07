@@ -113,6 +113,25 @@ describe 'hindsight' do
     end
   end
 
+  context 'with max_message_size' do
+    let(:params) do
+      {
+        max_message_size: '15e6'
+      }
+    end
+
+    it do
+      is_expected.to contain_file(
+        '/etc/hindsight/hindsight.cfg',
+      ).with({
+               'ensure' => 'file',
+               'owner' => 'root',
+               'group' => 'root',
+               'mode' => '0644',
+             }).with_content(%r{max_message_size(\s+)=(\s+)15e6})
+    end
+  end
+
   context 'package removal' do
     let(:params) do
       {
