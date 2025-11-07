@@ -1,3 +1,7 @@
+## 2025-11-07 v1.1.0
+
+ - Support setting `max_message_size`
+
 ## 2024-06-22 v1.0.0
 
  - Require stdlib >= 9
