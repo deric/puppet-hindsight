@@ -48,6 +48,7 @@
 #   Ensure passed to installed packages
 # @param hostname
 #   Manually set hostname
+# @param output_size in bytes (default 64MiB)
 class hindsight (
   String                  $max_message_size,
   String                  $package            = $hindsight::params::package,

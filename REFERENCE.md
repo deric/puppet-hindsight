@@ -56,6 +56,7 @@ The following parameters are available in the `hindsight` class:
 * [`output_defaults`](#-hindsight--output_defaults)
 * [`package_ensure`](#-hindsight--package_ensure)
 * [`hostname`](#-hindsight--hostname)
+* [`output_size`](#-hindsight--output_size)
 
 ##### <a name="-hindsight--max_message_size"></a>`max_message_size`
 
@@ -247,6 +248,14 @@ Manually set hostname
 
 Default value: `undef`
 
+##### <a name="-hindsight--output_size"></a>`output_size`
+
+Data type: `Integer`
+
+in bytes (default 64MiB)
+
+Default value: `64 * 1024 * 1024`
+
 ### <a name="hindsight--config"></a>`hindsight::config`
 
 Internal class, should not be called directly.
@@ -274,6 +283,7 @@ The following parameters are available in the `hindsight::config` class:
 * [`dir_ensure`](#-hindsight--config--dir_ensure)
 * [`hostname`](#-hindsight--config--hostname)
 * [`max_message_size`](#-hindsight--config--max_message_size)
+* [`output_size`](#-hindsight--config--output_size)
 
 ##### <a name="-hindsight--config--user"></a>`user`
 
@@ -384,6 +394,12 @@ Manually set hostname
 ##### <a name="-hindsight--config--max_message_size"></a>`max_message_size`
 
 Data type: `String`
+
+in bytes
+
+##### <a name="-hindsight--config--output_size"></a>`output_size`
+
+Data type: `Integer`
 
 in bytes
 
