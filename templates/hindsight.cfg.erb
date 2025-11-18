@@ -1,7 +1,7 @@
 #!/usr/bin/env lua
 
 output_path             = "<%= @output_dir %>"
-output_size             = 64 * 1024 * 1024
+output_size             = <%= @output_size %>
 sandbox_load_path       = nil -- disable dynamic loading
 sandbox_run_path        = "<%= @conf_dir %>/run"
 -- sandbox_install_path    = "/usr/share/luasandbox/sandboxes/heka" -- default

@@ -71,6 +71,7 @@ class hindsight (
   Hash                    $analysis_defaults  = $hindsight::params::analysis_defaults,
   Hash                    $input_defaults     = $hindsight::params::input_defaults,
   Hash                    $output_defaults    = $hindsight::params::output_defaults,
+  Integer                 $output_size        = 64 * 1024 * 1024,
   String                  $package_ensure     = 'installed',
   Optional[String]        $hostname           = undef,
 ) inherits hindsight::params {
@@ -105,6 +106,7 @@ class hindsight (
     analysis_defaults  => $analysis_defaults,
     input_defaults     => $input_defaults,
     output_defaults    => $output_defaults,
+    output_size        => $output_size,
     dir_ensure         => $_dir_ensure,
     file_ensure        => $_file_ensure,
     hostname           => $hostname,

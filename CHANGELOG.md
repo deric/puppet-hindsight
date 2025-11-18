@@ -1,3 +1,8 @@
+
+## 2025-11-18 v1.2.0
+
+ - Support setting `output_size`
+
 ## 2025-11-07 v1.1.0
 
  - Support setting `max_message_size`

@@ -37,6 +37,7 @@
 # @param hostname
 #   Manually set hostname
 # @param max_message_size in bytes
+# @param output_size in bytes
 class hindsight::config (
   String               $user,
   String               $group,
@@ -54,6 +55,7 @@ class hindsight::config (
   Hash                 $output_defaults,
   String               $max_message_size,
   Optional[String]     $hostname,
+  Integer              $output_size,
   String               $file_ensure = 'file',
   String               $dir_ensure = 'directory',
 ) {

@@ -132,6 +132,25 @@ describe 'hindsight' do
     end
   end
 
+  context 'with output_size' do
+    let(:params) do
+      {
+        output_size: 128*1024*1024,
+      }
+    end
+
+    it do
+      is_expected.to contain_file(
+        '/etc/hindsight/hindsight.cfg',
+      ).with({
+               'ensure' => 'file',
+               'owner' => 'root',
+               'group' => 'root',
+               'mode' => '0644',
+             }).with_content(%r{output_size(\s+)=(\s+)134217728})
+    end
+  end
+
   context 'package removal' do
     let(:params) do
       {
