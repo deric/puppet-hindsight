@@ -135,7 +135,7 @@ describe 'hindsight' do
   context 'with output_size' do
     let(:params) do
       {
-        output_size: 128*1024*1024,
+        output_size: 128 * 1024 * 1024,
       }
     end
 
