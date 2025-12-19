@@ -8,6 +8,9 @@ UMask=0007
 <% @prestart.each do |cmd| -%>
 ExecStartPre=-<%= cmd %>
 <% end -%>
+<% if @nofile -%>
+LimitNOFILE=<%= @nofile %>
+<% end -%>
 ExecStart=/usr/bin/hindsight /etc/hindsight/hindsight.cfg
 Restart=on-abort
 

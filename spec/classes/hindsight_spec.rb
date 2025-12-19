@@ -50,6 +50,30 @@ describe 'hindsight' do
     end
   end
 
+  context 'allow passing pre-start commands' do
+    let(:params) do
+      {
+        service_nofile: '4096:8192',
+      }
+    end
+
+    it {
+      is_expected.to contain_service('hindsight')
+        .that_subscribes_to('File[/etc/hindsight/hindsight.cfg]')
+    }
+
+    it do
+      is_expected.to contain_file(
+        '/lib/systemd/system/hindsight.service',
+      ).with({
+               'ensure' => 'file',
+               'owner' => 'root',
+               'group' => 'root',
+               'mode' => '0644',
+             }).with_content(%r{LimitNOFILE=4096:8192})
+    end
+  end
+
   context 'paths to libraries' do
     it do
       is_expected.to contain_file(

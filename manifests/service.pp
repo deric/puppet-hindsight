@@ -9,12 +9,15 @@
 #   Directory where main Hidsight configuration resides
 # @param prestart
 #   Array of commands to be executed before hindsight service start
+# @param nofile
+#   Limit number of file descriptor for hindsight service. Format: soft:hard, e.g. 2048:4096
 #
 class hindsight::service (
   String                  $service,
   Variant[Boolean,String] $ensure,
   Stdlib::Absolutepath    $conf_dir,
   Array[String]           $prestart = [],
+  Optional[String]        $nofile = undef,
 ) {
   # service configuration
   file { '/lib/systemd/system/hindsight.service':

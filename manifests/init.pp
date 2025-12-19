@@ -18,6 +18,8 @@
 #   Whether Puppet should manage the service
 # @param service_prestart
 #   Array of commands to be executed before hindsight service start
+# @param service_nofile
+#   Limit number of opened file descriptors
 # @param conf_dir
 #   Directory where main Hidsight configuration resides
 # @param output_dir
@@ -59,6 +61,7 @@ class hindsight (
   Variant[Boolean,String] $service_ensure     = $hindsight::params::service_ensure,
   Boolean                 $manage_service     = $hindsight::params::manage_service,
   Array[String]           $service_prestart   = [],
+  Optional[String]        $service_nofile     = undef,
   Stdlib::Absolutepath    $conf_dir           = $hindsight::params::conf_dir,
   Stdlib::Absolutepath    $output_dir         = $hindsight::params::output_dir,
   Stdlib::Absolutepath    $decoders_dir       = $hindsight::params::decoders_dir,
@@ -124,6 +127,7 @@ class hindsight (
       service  => $service_name,
       ensure   => $_service_ensure,
       prestart => $service_prestart,
+      nofile   => $service_nofile,
       conf_dir => $conf_dir,
       require  => [Class['hindsight::config']],
     }

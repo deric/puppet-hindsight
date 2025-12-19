@@ -451,6 +451,7 @@ The following parameters are available in the `hindsight::service` class:
 * [`ensure`](#-hindsight--service--ensure)
 * [`conf_dir`](#-hindsight--service--conf_dir)
 * [`prestart`](#-hindsight--service--prestart)
+* [`nofile`](#-hindsight--service--nofile)
 
 ##### <a name="-hindsight--service--service"></a>`service`
 
@@ -477,6 +478,14 @@ Data type: `Array[String]`
 Array of commands to be executed before hindsight service start
 
 Default value: `[]`
+
+##### <a name="-hindsight--service--nofile"></a>`nofile`
+
+Data type: `Optional[String]`
+
+Limit number of file descriptor for hindsight service. Format: soft:hard, e.g. 2048:4096
+
+Default value: `undef`
 
 ## Defined types
 
